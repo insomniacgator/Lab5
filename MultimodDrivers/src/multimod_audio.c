@@ -37,9 +37,29 @@ void AudioInput_Init(void) {
     SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOE);
     SysCtlPeripheralEnable(SYSCTL_PERIPH_ADC0);
     SysCtlDelay(3);
+    GPIO_PORTE_DIR_R &= ~0x00000002; // set PE1 has input
+    GPIO_PORTE_DEN_R &= ~0x00000002; // disable PE1 digital (make it analog)
 
     // Enable relevant ADC. Set the clock rate to 1 MSPS and enable hardware averaging.
+    // Enable Port E
+    //HWREG(SYSCTL_RCGCGPIO) |= SYSCTL_RCGCGPIO_R4;
+    // For ADC use port PE1 AIN2
+    GPIOPinTypeADC(GPIO_PORTE_BASE, GPIO_PIN_1);
     // Determine the correct sequencer and settings to use with the ADC and enable interrupts if relevant.
+
+    ADCSequenceConfigure(ADC0_BASE, SEQUENCE_NUM, ADC_TRIGGER_PROCESSOR, 0);
+    ADCHardwareOversampleConfigure(ADC0_BASE, 64);
+    ADCSequenceStepConfigure(ADC0_BASE, SEQUENCE_NUM, 0, ADC_CTL_CH2 | ADC_CTL_IE | ADC_CTL_END);
+    ADCSequenceEnable(ADC0_BASE, SEQUENCE_NUM);
+
+    //IntRegister(INT_ADC0SS1, ADC0S1_Handler);
+    ADCIntEnable(ADC0_BASE, SEQUENCE_NUM);
+
+    IntEnable(INT_ADC0SS3); // redundant
+
+    //ADCIntClear(ADC0_BASE, 3);
+    //ADCProcessorTrigger(ADC0_BASE, 3);
+
     // Enable relevant modules if needed.
 
 }

@@ -24,6 +24,8 @@
 #define WAVEFORM_AMPLITUDE 2047 // half of 4095 (12 bit DAC)
 #define WAVEFORM_OFFSET 2048 // middle of 4095 (12 bit DAC)
 
+#define SEQUENCE_NUM 3
+
 /*************************************Defines***************************************/
 
 /******************************Data Type Definitions********************************/

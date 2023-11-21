@@ -9,8 +9,10 @@
 /************************************Includes***************************************/
 
 #include <stdint.h>
+#include <driverlib/uartstdio.h>
 
 #include "./G8RTOS_Semaphores.h"
+
 
 /************************************Includes***************************************/
 
@@ -25,6 +27,17 @@
 /******************************Data Type Definitions********************************/
 
 /****************************Data Structure Definitions*****************************/
+typedef struct G8RTOS_FIFO_t
+{
+    int32_t buffer[16];
+    int32_t head;
+    int32_t tail;
+    uint32_t lostData; //count
+    //int32_t test;
+    semaphore_t currentSize;
+    semaphore_t mutex;
+
+} G8RTOS_FIFO_t;
 /****************************Data Structure Definitions*****************************/
 
 /********************************Public Variables***********************************/

@@ -24,7 +24,7 @@
 #define PCA9956B_ADDR   0x01
 #define I2C_SCL_PIN     GPIO_PIN_6
 #define I2C_SDA_PIN     GPIO_PIN_7
-#define OE_PIN          GPIO_PIN_5
+#define OE_PIN          GPIO_PIN_2
 #define LEDOUT0         0x02
 #define LEDOUT5         0x07
 #define PWM0            0x0A
@@ -38,10 +38,6 @@
 #define IREFALL         0x40
 
 #define AI_BIT          0x80
-
-// Connected PCA9555
-#define LED_PCA9555_GPIO_ADDR   0x23
-#define LED_PCA9555_RST_PIN     0x00
 
 /*************************************Defines***************************************/
 
@@ -64,8 +60,7 @@ void PCA9956b_SetAllMax(void);
 void PCA9956b_SetAllOff(void);
 void PCA9956b_EnableOutput(void);
 void PCA9956b_DisableOutput(void);
-void PCA9556b_ReadAll();
-void PCA9556b_SetLED(uint8_t LED, uint8_t PWM, uint8_t IREF);
+
 uint8_t PCA9956b_GetChipID(void);
 
 /********************************Public Functions***********************************/

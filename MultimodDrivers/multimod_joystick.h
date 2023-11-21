@@ -1,4 +1,4 @@
-// multimod_joystick.h
+// multimod_joystic.c
 // Date Created: 2023-07-25
 // Date Updated: 2023-07-27
 // Declarations for multimod joystick functions

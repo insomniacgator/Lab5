@@ -18,7 +18,11 @@
 /*************************************Defines***************************************/
 
 /***********************************Semaphores**************************************/
-
+semaphore_t sem_UART;
+//semaphore_t sem_I2CA;
+//semaphore_t sem_SPIA;
+semaphore_t sem_Sample;
+semaphore_t sem_FFT;
 
 /***********************************Semaphores**************************************/
 
@@ -31,14 +35,16 @@
 void Idle_Thread(void);
 
 /*******************************Background Threads**********************************/
+void Sample_Thread(void);
 
+void FFT_Thread(void);
 /********************************Periodic Threads***********************************/
 
 /********************************Periodic Threads***********************************/
 
 /*******************************Aperiodic Threads***********************************/
-
-
+void ADC0S3_Handler(void);
+void Timer0_Handler(void);
 /*******************************Aperiodic Threads***********************************/
 
 
